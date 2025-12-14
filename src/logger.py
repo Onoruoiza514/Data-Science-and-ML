@@ -1,18 +1,20 @@
 import logging
-logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(name)s - %(levelname)s - %(message)s')
 import os
 from datetime import datetime
 
-LOG_FILE = f"{datetime.now().strftime('%Y-%m-%d')}.log"
-logs_path = os.path.join(os.getcwd(), 'logs' , LOG_FILE)
-os.makedirs(logs_path, exist_ok=True)
+# Create logs directory
+LOG_DIR = os.path.join(os.getcwd(), "logs")
+os.makedirs(LOG_DIR, exist_ok=True)
 
-LOG_FILE_PATH = os.path.join('logs_path' , LOG_FILE)
+# Create log file name
+LOG_FILE = f"{datetime.now().strftime('%Y-%m-%d_%H-%M-%S')}.log"
+LOG_FILE_PATH = os.path.join(LOG_DIR, LOG_FILE)
 
+# Configure logging ONCE
 logging.basicConfig(
     filename=LOG_FILE_PATH,
     level=logging.INFO,
-    format='%(asctime)s - %(name)s - %(levelname)s - %(message)s')
+    format="%(asctime)s - %(name)s - %(levelname)s - %(message)s"
+)
 
-if __name__ == '__main__':
-    logging.info('Logging started.')
+__all__ = ["logging"]
